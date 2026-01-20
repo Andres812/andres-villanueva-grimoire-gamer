@@ -1,42 +1,35 @@
-// Grimoire Gamer Hub
-// Manejo de eventos, DOM y LocalStorage
+function selectGrimoire(type) {
+  localStorage.setItem("grimoire", type);
 
+  const modal = document.getElementById("selectionModal");
+  const title = document.getElementById("modalTitle");
+  const text = document.getElementById("modalText");
 
-// Esperar a que cargue el DOM
-document.addEventListener("DOMContentLoaded", () => {
-  const cards = document.querySelectorAll(".grimoire-card");
-  const output = document.getElementById("selectedGrimoire");
-  const storageOutput = document.getElementById("storageOutput");
-
-  // Cargar último grimorio guardado
-  const lastGrimoire = localStorage.getItem("grimorioSeleccionado");
-  if (lastGrimoire) {
-    output.textContent = lastGrimoire;
-  }
-
-  // Mostrar todo el localStorage
-  function mostrarStorage() {
-    let contenido = "";
-    for (let i = 0; i < localStorage.length; i++) {
-      const key = localStorage.key(i);
-      contenido += `${key}: ${localStorage.getItem(key)}\n`;
+  const data = {
+    pica: {
+      title: "♠ Grimorio de la Pica",
+      text: "Has elegido el sigilo, la oscuridad y la energía fría."
+    },
+    corazon: {
+      title: "♥ Grimorio del Corazón",
+      text: "Has elegido la pasión ardiente y el poder de la realeza."
+    },
+    trebol: {
+      title: "♣ Grimorio del Trébol",
+      text: "Has elegido la fuerza de la naturaleza y la vitalidad eterna."
+    },
+    diamante: {
+      title: "♦ Grimorio del Diamante",
+      text: "Has elegido la elegancia, el hielo y la precisión."
     }
-    storageOutput.textContent = contenido || "LocalStorage vacío";
-  }
+  };
 
-  mostrarStorage();
+  title.innerText = data[type].title;
+  text.innerText = data[type].text;
 
-  // Asignar evento a cada carta
-  cards.forEach((card) => {
-    card.addEventListener("click", () => {
-      const nombre = card.querySelector(".card-title").textContent;
+  modal.classList.remove("d-none");
+}
 
-      // Guardar en localStorage
-      localStorage.setItem("grimorioSeleccionado", nombre);
-
-      // Actualizar DOM
-      output.textContent = nombre;
-      mostrarStorage();
-    });
-  });
-});
+function closeModal() {
+  document.getElementById("selectionModal").classList.add("d-none");
+}
