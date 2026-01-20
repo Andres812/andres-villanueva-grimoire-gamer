@@ -38,3 +38,9 @@ body {
   background: linear-gradient(145deg, #003300, #006600);
   color: #58d68d;
 }
+
+.grimoire-card:hover {
+  transform: scale(1.05);
+  transition: transform 0.3s ease;
+  cursor: pointer;
+}
