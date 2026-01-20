@@ -1,3 +1,7 @@
+// Grimoire Gamer Hub
+// Manejo de eventos, DOM y LocalStorage
+
+
 // Esperar a que cargue el DOM
 document.addEventListener("DOMContentLoaded", () => {
   const cards = document.querySelectorAll(".grimoire-card");
